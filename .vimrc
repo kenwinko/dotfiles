@@ -15,4 +15,5 @@ set number
 set termguicolors
 colorscheme catppuccin_mocha
 syntax on
-set ts=4 sw=4
+"set ts=4 sw=4
+let g:pymode_options_colorcolumn = 0
