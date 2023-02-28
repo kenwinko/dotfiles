@@ -13,7 +13,11 @@ call plug#end()
 
 set number
 set termguicolors
+set cursorline
+set ts=4 sw=4
+set splitright
+set expandtab
+
 colorscheme catppuccin_mocha
 syntax on
-"set ts=4 sw=4
 let g:pymode_options_colorcolumn = 0
