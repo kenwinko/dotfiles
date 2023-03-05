@@ -21,7 +21,7 @@ order += "disk /home"
 order += "disk /windows"
 order += "load"
 order += "memory"
-order += "tztime locail"
+order += "tztime local"
 
 wireless _first_ {
         format_up = "%quality at %essid %ip"
@@ -29,7 +29,7 @@ wireless _first_ {
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+        format = "%status %percentage"
 }
 
 disk "/" {
