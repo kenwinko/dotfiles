@@ -1,14 +1,8 @@
-#------------------------------------------------------------------#
-# File:     .zshrc   ZSH resource file                             #
-# Version:  0.1.16                                                 #
-# Author:   Øyvind "Mr.Elendig" Heggstad <mrelendig@har-ikkje.net> #
-#------------------------------------------------------------------#
-
+alias config='git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
+bindkey -v
 #-----------------------------
 # Source some stuff
 #-----------------------------
-alias config="/usr/bin/git --git-dir=/home/kulak/dotfiles.git/ --work-tree=/home/kulak"
-
 if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
@@ -34,8 +28,7 @@ export GOPATH="$HOME/go"
 #-----------------------------
 # Dircolors
 #-----------------------------
-eval $(dircolors -b ~/.dircolors)
-
+eval $(dircolors ~/.dircolors)
 #------------------------------
 # Keybindings
 #------------------------------
@@ -156,8 +149,9 @@ setprompt() {
     %(!.%F{red}%#%f.%F{green}%#%f)
     " "
   '}}
-
-  PS2=$'%_>'
-  RPROMPT=$'${vcs_info_msg_0_}'
+  
+ PS2=$'%_>'
+ RPROMPT=$'${vcs_info_msg_0_}'
 }
 setprompt
+# vim: set ts=2 sw=2 et:
