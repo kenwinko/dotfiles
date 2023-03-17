@@ -1,5 +1,4 @@
 alias config='git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
-bindkey -v
 #-----------------------------
 # Source some stuff
 #-----------------------------
@@ -21,7 +20,7 @@ SAVEHIST=1000
 # Variables
 #------------------------------
 export BROWSER="chromium"
-export EDITOR="vim"
+export EDITOR="nvim"
 export PATH="${PATH}:${HOME}/bin:${HOME}/.cabal/bin"
 export GOPATH="$HOME/go"
 
@@ -51,8 +50,6 @@ bindkey "^[[F" end-of-line
 alias ls="ls --color -F"
 alias ll="ls --color -lh"
 alias spm="sudo pacman"
-alias gr="gvim --remote-silent"
-alias vr="vim --remote-silent"
 
 #------------------------------
 # ShellFuncs
