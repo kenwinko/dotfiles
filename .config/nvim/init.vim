@@ -5,11 +5,13 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 call plug#end()
 
 let mapleader = " "
 
+set background=dark
 set number
 set termguicolors
 set cursorline
@@ -40,7 +42,7 @@ endfunction
 
 autocmd FileType python map <buffer> <leader>r <esc>:w<cr>:exec '!python' shellescape(@%, 1)<cr>
 
-colorscheme catppuccin
+colorscheme tokyonight-night
 
 lua <<EOF
 vim.g.loaded_netrw = 1
@@ -51,4 +53,5 @@ require('Comment').setup()
 require'nvim-treesitter.configs'.setup {
   highlight = { enable = true }
 }
+
 EOF
