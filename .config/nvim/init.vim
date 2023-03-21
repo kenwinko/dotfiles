@@ -42,7 +42,7 @@ endfunction
 
 autocmd FileType python map <buffer> <leader>r <esc>:w<cr>:exec '!python' shellescape(@%, 1)<cr>
 
-colorscheme tokyonight-night
+colorscheme catppuccin-mocha
 
 lua <<EOF
 vim.g.loaded_netrw = 1
