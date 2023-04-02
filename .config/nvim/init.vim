@@ -6,6 +6,8 @@ Plug 'numToStr/Comment.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 
@@ -30,7 +32,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call ShowDocumentation()<CR>
+nnoremap <silent> K :call ShowDocumentation()<cr>
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -41,6 +43,9 @@ function! ShowDocumentation()
 endfunction
 
 autocmd FileType python map <buffer> <leader>r <esc>:w<cr>:exec '!python' shellescape(@%, 1)<cr>
+
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fc <cmd>Telescope colorscheme<cr>
 
 colorscheme catppuccin-mocha
 
