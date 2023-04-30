@@ -97,7 +97,7 @@ markup=pango
 interval=10
 
 [battery]
-command=battery3/battery.py
+command=battery3/battery.py /sys/class/power_supply/BAT0/capacity
 #label=<span color='#7f849c'>BAT</span>
 markup=pango
 label=<span color='#f9e2af'>⚡</span>
