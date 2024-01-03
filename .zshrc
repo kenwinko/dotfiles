@@ -1,14 +1,4 @@
 alias config='git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
-#-----------------------------
-# Source some stuff
-#-----------------------------
-if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-  . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
-
-BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 #------------------------------
 # History stuff
 #------------------------------
@@ -21,13 +11,7 @@ SAVEHIST=1000
 #------------------------------
 export BROWSER="chromium"
 export EDITOR="nvim"
-export PATH="${PATH}:${HOME}/bin:${HOME}/.cabal/bin"
-export GOPATH="$HOME/go"
 
-#-----------------------------
-# Dircolors
-#-----------------------------
-eval $(dircolors ~/.dircolors)
 #------------------------------
 # Keybindings
 #------------------------------
@@ -75,11 +59,6 @@ autoload -Uz compinit
 compinit
 zstyle :compinstall filename '${HOME}/.zshrc'
 
-#- buggy
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-#-/buggy
-
 zstyle ':completion:*:pacman:*' force-list always
 zstyle ':completion:*:*:pacman:*' menu yes select
 
@@ -92,63 +71,16 @@ zstyle ':completion:*:*:killall:*' menu yes select
 zstyle ':completion:*:killall:*'   force-list always
 
 #------------------------------
-# Window title
-#------------------------------
-case $TERM in
-  termite|*xterm*|rxvt|rxvt-unicode|rxvt-256color|rxvt-unicode-256color|(dt|k|E)term)
-    precmd () {
-      vcs_info
-      print -Pn "\e]0;[%n@%M][%~]%#\a"
-    } 
-    preexec () { print -Pn "\e]0;[%n@%M][%~]%# ($1)\a" }
-    ;;
-  screen|screen-256color)
-    precmd () { 
-      vcs_info
-      print -Pn "\e]83;title \"$1\"\a" 
-      print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~]\a" 
-    }
-    preexec () { 
-      print -Pn "\e]83;title \"$1\"\a" 
-      print -Pn "\e]0;$TERM - (%L) [%n@%M]%# [%~] ($1)\a" 
-    }
-    ;; 
-esac
-
-#------------------------------
 # Prompt
 #------------------------------
 autoload -U colors zsh/terminfo
 colors
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git hg
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git*' formats "%{${fg[cyan]}%}[%{${fg[green]}%}%s%{${fg[cyan]}%}][%{${fg[blue]}%}%r/%S%%{${fg[cyan]}%}][%{${fg[blue]}%}%b%{${fg[yellow]}%}%m%u%c%{${fg[cyan]}%}]%{$reset_color%}"
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats 'on %b '
+precmd() { vcs_info }
+setopt PROMPT_SUBST
 
-setprompt() {
-  setopt prompt_subst
-
-  if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then 
-    p_host='%F{yellow}%M%f'
-  else
-    p_host='%F{green}%M%f'
-  fi
-
-  PS1=${(j::Q)${(Z:Cn:):-$'
-    %F{cyan}[%f
-    %(!.%F{red}%n%f.%F{green}%n%f)
-    %F{cyan}@%f
-    ${p_host}
-    %F{cyan}][%f
-    %F{blue}%~%f
-    %F{cyan}]%f
-    %(!.%F{red}%#%f.%F{green}%#%f)
-    " "
-  '}}
-  
- PS2=$'%_>'
- RPROMPT=$'${vcs_info_msg_0_}'
-}
-setprompt
+PROMPT='%F{#e06c75}[%f%F{white}%n%f%F{#e06c75}@%f%F{#61afef}%m%f%F{#e06c75}:%f%F{#61afef}%~%f%F{#e06c75}]%f '
 # vim: set ts=2 sw=2 et:
