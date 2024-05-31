@@ -13,6 +13,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nyngwang/nvimgelion'
 Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'joshdick/onedark.vim'
 
 vim.call('plug#end')
 
@@ -36,20 +37,21 @@ vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<cr>', options)
 vim.keymap.set('n', '<silent>gd', '<Plug>(coc-definition)', options)
 vim.keymap.set('n', '<silent>gr', '<Plug>(coc-references)', options)
 vim.keymap.set('n', '<leader>rn', '<Plug>(coc-rename)', options)
-vim.keymap.set('n', 'leader>ff', '<cmd>Telescope find_files<cr>', options)
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', options)
 vim.keymap.set('n', '<leader>fc', '<cmd>Telescope colorscheme<cr>', options)
+vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {noremap = true})
+vim.keymap.set('n', '<leader>th', '<cmd>CocCommand document.toggleInlayHint<cr>')
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require('nvim-tree').setup()
 require('Comment').setup()
-require'nvim-treesitter.configs'.setup {
-	highlight = { enable = true }
+require 'nvim-treesitter.configs'.setup {
+	highlight = { enable = true}
 }
-require('indent_blankline').setup {
-	show_current_context = true,
-	show_current_context_start = true
+require 'ibl'.setup {
+	scope = { enabled = true }
 }
 
 function _G.show_docs()
@@ -68,4 +70,3 @@ vim.api.nvim_create_autocmd("FileType", { pattern = "python",
     callback = function()
         vim.api.nvim_buf_set_keymap(0,"n","<leader>r", "<esc>:w<cr>:exec '!python' shellescape(@%, 1)<cr>", options)
 end})
-
