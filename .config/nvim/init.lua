@@ -41,6 +41,7 @@ vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<cr>', options)
 vim.keymap.set('n', '<silent>gd', '<Plug>(coc-definition)', options)
 vim.keymap.set('n', '<silent>gr', '<Plug>(coc-references)', options)
 vim.keymap.set('n', '<leader>rn', '<Plug>(coc-rename)', options)
+vim.keymap.set('i', '<c-space>', 'coc#refresh()', {silent = true, expr = true})
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', options)
 vim.keymap.set('n', '<leader>fc', '<cmd>Telescope colorscheme<cr>', options)
 vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {noremap = true})
@@ -75,3 +76,12 @@ vim.api.nvim_create_autocmd("FileType", { pattern = "python",
     callback = function()
         vim.api.nvim_buf_set_keymap(0,"n","<leader>r", "<esc>:w<cr>:exec '!python' shellescape(@%, 1)<cr>", options)
 end})
+
+-- Highlight the symbol and its references on a CursorHold event(cursor is idle)
+vim.api.nvim_create_augroup("CocGroup", {})
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
+})
+
