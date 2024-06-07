@@ -5,7 +5,7 @@ vim.call('plug#begin')
 Plug('catppuccin/nvim', {as = 'catppuccin'})
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'numToStr/Comment.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug('neoclide/coc.nvim', {branch = 'release'})
 Plug('folke/tokyonight.nvim', {branch = 'main' })
 Plug 'nvim-lua/plenary.nvim'
@@ -14,6 +14,7 @@ Plug 'nyngwang/nvimgelion'
 Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'joshdick/onedark.vim'
+Plug 'projekt0n/github-nvim-theme'
 
 vim.call('plug#end')
 
@@ -29,7 +30,10 @@ vim.o.shiftwidth = 4
 vim.o.splitright = true
 vim.o.encoding = 'utf-8'
 
-vim.cmd('colorscheme catppuccin-mocha')
+--vim.cmd('colorscheme catppuccin-mocha')
+--vim.cmd('colorscheme tokyonight-night')
+vim.cmd('colorscheme github_dark_default')
+
 
 vim.g.mapleader = ' '
 options = { noremap = true }
@@ -48,6 +52,7 @@ vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup()
 require('Comment').setup()
 require 'nvim-treesitter.configs'.setup {
+	ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash',
 	highlight = { enable = true}
 }
 require 'ibl'.setup {
