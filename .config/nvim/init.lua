@@ -52,7 +52,7 @@ vim.g.loaded_netrwPlugin = 1
 require('nvim-tree').setup()
 require('Comment').setup()
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash',
+	ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash'},
 	highlight = { enable = true}
 }
 require 'ibl'.setup {
