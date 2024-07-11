@@ -29,10 +29,13 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.splitright = true
 vim.o.encoding = 'utf-8'
+vim.o.textwidth = 79
+vim.o.shiftround = true
 
 --vim.cmd('colorscheme catppuccin-mocha')
 --vim.cmd('colorscheme tokyonight-night')
-vim.cmd('colorscheme github_dark_default')
+--vim.cmd('colorscheme github_dark_default')
+vim.cmd('colorscheme jblow')
 
 vim.g.mapleader = ' '
 options = { noremap = true }
@@ -246,3 +249,8 @@ keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- Resume latest coc list
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
+
+vim.g.coc_global_extensions = {
+	'coc-clangd'
+}
+vim.g.coc_clangd_executable = 'clangd'
