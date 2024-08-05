@@ -63,7 +63,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run -fn 'JefBrainsMonoNF-12' -nf '#cdd6f4' -nb '#1e1e2e' -sf '#1e1e2e' -sb '#b4befe'
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'JefBrainsMonoNF-Bold-20' -nf '#cdd6f4' -nb '#1e1e2e' -sf '#1e1e2e' -sb '#b4befe'
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -253,12 +253,15 @@ bar {
     separator_symbol " "
     
     colors {
-        background $base
-        statusline #ffffff
-        focused_workspace $red $base $sky
-        active_workspace $sky $base $sky
-        inactive_workspace $sky $surface1 $sky
-        urgent_workspace $text $peach $green
+    background         $base
+    statusline         $text
+    focused_statusline $text
+    focused_separator  $base
+    focused_workspace  $base $base $green
+    active_workspace   $base $base $blue
+    inactive_workspace $base $base $surface1
+    urgent_workspace   $base $base $surface1
+    binding_mode       $base $base $surface1
     }
 }
 
@@ -266,13 +269,6 @@ bar {
 default_border pixel 1
 title_align center
 
-# target                 title     bg    text   indicator  border
-# client.focused           $pink     $base $text  $rosewater $pink
-# client.focused_inactive  $mauve    $base $text  $rosewater $mauve
-# client.unfocused         $mauve    $base $text  $rosewater $mauve
-# client.urgent            $peach    $base $peach $overlay0  $peach
-# client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
-# client.background        $base
 client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce   #9aa5ce
 client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
 client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
