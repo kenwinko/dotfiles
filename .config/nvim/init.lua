@@ -10,11 +10,11 @@ Plug('neoclide/coc.nvim', {branch = 'release'})
 Plug('folke/tokyonight.nvim', {branch = 'main' })
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nyngwang/nvimgelion'
-Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'joshdick/onedark.vim'
 Plug 'projekt0n/github-nvim-theme'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'shaunsingh/nord.nvim'
 
 vim.call('plug#end')
 
@@ -35,7 +35,7 @@ vim.o.shiftround = true
 --vim.cmd('colorscheme catppuccin-mocha')
 --vim.cmd('colorscheme tokyonight-night')
 --vim.cmd('colorscheme github_dark_default')
-vim.cmd('colorscheme jblow')
+vim.cmd('colorscheme nord')
 
 vim.g.mapleader = ' '
 options = { noremap = true }
@@ -84,6 +84,23 @@ function _G.check_back_space()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
+function compile_and_run_c()
+    -- Save the current file
+    vim.cmd('w')
+
+    -- Get the current file name
+    local file_name = vim.fn.expand('%:t')
+    local file_path = vim.fn.expand('%:p:h')
+
+    -- Compile the C file using gcc
+    local compile_cmd = string.format('clang %s -o %s/%s.o && %s/%s.o',
+                                      file_name, file_path, file_name:gsub('%.c', ''), file_path, file_name:gsub('%.c', ''))
+    vim.fn.system(compile_cmd)
+
+    -- Open a new split to run the compiled program
+    vim.cmd('vsp | term ./' .. file_name:gsub('%.c', '') .. '.o')
+    vim.cmd('startinsert')
+end
 -- Use Tab for trigger completion with characters ahead and navigate
 -- NOTE: There's always a completion item selected by default, you may want to enable
 -- no select by setting `"suggest.noselect": true` in your configuration file
@@ -254,3 +271,9 @@ vim.g.coc_global_extensions = {
 	'coc-clangd'
 }
 vim.g.coc_clangd_executable = 'clangd'
+
+
+
+
+-- Map <leader>r to compile and run the current C file
+vim.api.nvim_set_keymap('n', '<leader>rc', '<cmd>lua compile_and_run_c()<CR>', { noremap = true, silent = true })

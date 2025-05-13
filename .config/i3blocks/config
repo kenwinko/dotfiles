@@ -43,19 +43,19 @@ signal=10
 #STEP=5%
 
 [diskroot]
-label=<span color='#7f849c'>/</span>
+label=<span color='#5e81ac'>/</span>
 markup=pango
 command=disk2/disk.py /
 interval=30
 
 [diskhome]
-label=<span color='#7f849c'>home</span>
+label=<span color='#5e81ac'>home</span>
 markup=pango
 command=disk2/disk.py /home
 interval=30
 
 [diskwindows]
-label=<span color='#7f849c'>windows</span>
+label=<span color='#5e81ac'>windows</span>
 markup=pango
 command=disk2/disk.py /windows
 interval=30
@@ -86,19 +86,19 @@ interval=5
 # see the script for details.
 [cpu_usage]
 command=echo ' '$((100 - $(vmstat | tail -1 | awk '{ print $15 }')))%
-label=<span color='#7f849c'>CPU</span>
+label=<span color='#5e81ac'>CPU</span>
 markup=pango
 interval=10
 
 [memory]
 command=echo ' '$(free -m | head -2 | tail -1 | awk '{print int((1 - $4/$2) * 100)}')%
-label=<span color='#7f849c'>RAM</span>
+label=<span color='#5e81ac'>RAM</span>
 markup=pango
 interval=10
 
 [battery]
 command=battery3/battery.py /sys/class/power_supply/BAT0/capacity
-#label=<span color='#7f849c'>BAT</span>
+#label=<span color='#5e81ac'>BAT</span>
 markup=pango
 label=<span color='#f9e2af'>⚡</span>
 interval=30

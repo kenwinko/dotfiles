@@ -1,4 +1,5 @@
 alias config='git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
+eval "$(dircolors -b ~/.dircolors)"
 #------------------------------
 # History stuff
 #------------------------------
@@ -9,8 +10,12 @@ SAVEHIST=1000
 #------------------------------
 # Variables
 #------------------------------
-export BROWSER="chromium"
+export BROWSER="librewolf"
 export EDITOR="nvim"
+
+export GTK_IM_MODULE=ibus
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
 
 #------------------------------
 # Keybindings
@@ -81,6 +86,5 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats 'on %b '
 precmd() { vcs_info }
 setopt PROMPT_SUBST
-
-PROMPT='%F{#e06c75}[%f%F{white}%n%f%F{#e06c75}@%f%F{#61afef}%m%f%F{#e06c75}:%f%F{#61afef}%~%f%F{#e06c75}]%f '
+PROMPT='%n@%m:%~%# '
 # vim: set ts=2 sw=2 et:
