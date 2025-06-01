@@ -1,4 +1,4 @@
-alias config='git --git-dir=$HOME/dotfiles.git/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 eval "$(dircolors -b ~/.dircolors)"
 #------------------------------
 # History stuff
@@ -12,10 +12,6 @@ SAVEHIST=1000
 #------------------------------
 export BROWSER="librewolf"
 export EDITOR="nvim"
-
-export GTK_IM_MODULE=ibus
-export XMODIFIERS="@im=ibus"
-export QT_IM_MODULE=ibus
 
 #------------------------------
 # Keybindings
@@ -37,7 +33,7 @@ bindkey "^[[F" end-of-line
 # Alias stuff
 #------------------------------
 alias ls="ls --color -F"
-alias ll="ls --color -lh"
+alias ll="ls --color -lth"
 alias spm="sudo pacman"
 
 #------------------------------
@@ -86,5 +82,6 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' formats 'on %b '
 precmd() { vcs_info }
 setopt PROMPT_SUBST
+
 PROMPT='%n@%m:%~%# '
 # vim: set ts=2 sw=2 et:

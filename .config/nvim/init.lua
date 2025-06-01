@@ -20,6 +20,7 @@ vim.call('plug#end')
 
 vim.o.background = 'dark'
 vim.o.number = true
+vim.o.relativenumber = true
 vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.softtabstop = 4
