@@ -2,19 +2,12 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
-Plug('catppuccin/nvim', {as = 'catppuccin'})
-Plug 'nvim-tree/nvim-tree.lua'
-Plug 'numToStr/Comment.nvim'
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug('neoclide/coc.nvim', {branch = 'release'})
-Plug('folke/tokyonight.nvim', {branch = 'main' })
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'joshdick/onedark.vim'
-Plug 'projekt0n/github-nvim-theme'
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'shaunsingh/nord.nvim'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'blazkowolf/gruber-darker.nvim'
 
 vim.call('plug#end')
 
@@ -32,37 +25,25 @@ vim.o.splitright = true
 vim.o.encoding = 'utf-8'
 vim.o.textwidth = 79
 vim.o.shiftround = true
+vim.o.expandtab = true
 
---vim.cmd('colorscheme catppuccin-mocha')
---vim.cmd('colorscheme tokyonight-night')
---vim.cmd('colorscheme github_dark_default')
-vim.cmd('colorscheme nord')
+vim.cmd('colorscheme gruber-darker')
 
 vim.g.mapleader = ' '
 options = { noremap = true }
-vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<cr>', options)
-vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', options)
-vim.keymap.set('n', '<leader>fc', '<cmd>Telescope colorscheme<cr>', options)
+vim.keymap.set('n', '<leader>n', ':Ex<cr>', options)
 vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {noremap = true})
-vim.keymap.set('n', '<leader>th', '<cmd>CocCommand document.toggleInlayHint<cr>')
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- Enable detailed listing format
+vim.g.netrw_liststyle = 1
+vim.g.netrw_hide = 1						-- Show hidden files by default
+vim.g.netrw_browse_split = 4				-- hsplit
 
-require('nvim-tree').setup()
-require('Comment').setup()
+
 require 'nvim-treesitter.configs'.setup {
 	ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash'},
 	highlight = { enable = true}
 }
-require 'ibl'.setup {
-	scope = { enabled = true }
-}
-
-vim.api.nvim_create_autocmd("FileType", { pattern = "python", 
-    callback = function()
-        vim.api.nvim_buf_set_keymap(0,"n","<leader>r", "<esc>:w<cr>:exec '!python' shellescape(@%, 1)<cr>", options)
-end})
 
 -- https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.lua
 
@@ -94,7 +75,7 @@ function compile_and_run_c()
     local file_path = vim.fn.expand('%:p:h')
 
     -- Compile the C file using gcc
-    local compile_cmd = string.format('clang %s -o %s/%s.o && %s/%s.o',
+    local compile_cmd = string.format('gcc %s -o %s/%s.o && %s/%s.o',
                                       file_name, file_path, file_name:gsub('%.c', ''), file_path, file_name:gsub('%.c', ''))
     vim.fn.system(compile_cmd)
 
@@ -102,6 +83,8 @@ function compile_and_run_c()
     vim.cmd('vsp | term ./' .. file_name:gsub('%.c', '') .. '.o')
     vim.cmd('startinsert')
 end
+
+
 -- Use Tab for trigger completion with characters ahead and navigate
 -- NOTE: There's always a completion item selected by default, you may want to enable
 -- no select by setting `"suggest.noselect": true` in your configuration file
@@ -272,7 +255,6 @@ vim.g.coc_global_extensions = {
 	'coc-clangd'
 }
 vim.g.coc_clangd_executable = 'clangd'
-
 
 
 
