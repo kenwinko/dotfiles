@@ -28,13 +28,13 @@ bindkey '^[[B' down-line-or-search
 bindkey '^[[C' forward-char 
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey '^R' history-incremental-search-backward
 
 #------------------------------
 # Alias stuff
 #------------------------------
 alias ls="ls --color -F"
-alias ll="ls --color -lth"
-alias spm="sudo pacman"
+alias ll="ls --color -lrth"
 
 #------------------------------
 # ShellFuncs
