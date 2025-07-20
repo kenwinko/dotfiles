@@ -1,5 +1,6 @@
 local Plug = vim.fn['plug#']
 
+
 vim.call('plug#begin')
 
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
@@ -8,6 +9,7 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'rebelot/kanagawa.nvim'
 
 vim.call('plug#end')
+
 
 vim.cmd('filetype plugin indent on')
 vim.o.background = 'dark'
