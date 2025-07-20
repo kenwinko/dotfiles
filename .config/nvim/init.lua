@@ -38,13 +38,13 @@ vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {noremap = true})
 
 -- Enable detailed listing format
 vim.g.netrw_liststyle = 1
-vim.g.netrw_hide = 1						-- Show hidden files by default
-vim.g.netrw_browse_split = 4				-- hsplit
+vim.g.netrw_hide = 1                        -- Show hidden files by default
+vim.g.netrw_browse_split = 4                -- hsplit
 
 
 require 'nvim-treesitter.configs'.setup {
-	ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash'},
-	highlight = { enable = true}
+    ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash'},
+    highlight = { enable = true}
 }
 
 
@@ -59,11 +59,11 @@ require("kanagawa").setup({
   terminalColors = true,
   overrides = function(colors)
     return {
-      Comment = { fg = colors.palette.oniViolet, italic = true },	-- violet comments
-      Function = { fg = "#80FFFF", bold = true },					-- bold cyan for functions
-      Keyword = { fg = "#FF75B5", bold = true, italic = true },		-- bold pink for keywords
-      String = { fg = "#00FF87" },									-- green for strings
-      Statement = { fg = "#FFB86C", bold = true },					-- bold yellow for statements
+      Comment = { fg = colors.palette.oniViolet, italic = true },   -- violet comments
+      Function = { fg = "#80FFFF", bold = true },                   -- bold cyan for functions
+      Keyword = { fg = "#FF75B5", bold = true, italic = true },     -- bold pink for keywords
+      String = { fg = "#00FF87" },                                  -- green for strings
+      Statement = { fg = "#FFB86C", bold = true },                  -- bold yellow for statements
     }
   end,
 })
