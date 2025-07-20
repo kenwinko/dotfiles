@@ -4,9 +4,8 @@ vim.call('plug#begin')
 
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug 'bluz71/vim-moonfly-colors'
-Plug 'shaunsingh/nord.nvim'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'blazkowolf/gruber-darker.nvim'
+Plug 'rebelot/kanagawa.nvim'
 
 vim.call('plug#end')
 
@@ -22,15 +21,13 @@ vim.o.autoindent = true
 vim.o.fileformat = 'unix'
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.expandtab = true
+vim.o.smarttab = true
 vim.o.encoding = 'utf-8'
 vim.o.textwidth = 79
 vim.o.shiftround = true
 vim.o.splitright = true
 vim.o.incsearch = true
 vim.o.autochdir = true
-
-vim.cmd('colorscheme gruber-darker')
 
 vim.g.mapleader = ' '
 options = { noremap = true }
@@ -47,3 +44,26 @@ require 'nvim-treesitter.configs'.setup {
 	ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash'},
 	highlight = { enable = true}
 }
+
+
+require("kanagawa").setup({
+  compile = false,
+  undercurl = true,
+  commentStyle = { italic = true },
+  functionStyle = { bold = true },
+  keywordStyle = { italic = true, bold = true },
+  statementStyle = { bold = true },
+  typeStyle = { bold = true },
+  terminalColors = true,
+  overrides = function(colors)
+    return {
+      Comment = { fg = colors.palette.oniViolet, italic = true },	-- violet comments
+      Function = { fg = "#80FFFF", bold = true },					-- bold cyan for functions
+      Keyword = { fg = "#FF75B5", bold = true, italic = true },		-- bold pink for keywords
+      String = { fg = "#00FF87" },									-- green for strings
+      Statement = { fg = "#FFB86C", bold = true },					-- bold yellow for statements
+    }
+  end,
+})
+
+vim.cmd('colorscheme kanagawa-dragon')
