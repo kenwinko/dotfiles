@@ -3,6 +3,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
+Plug 'stevearc/oil.nvim'
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'projekt0n/github-nvim-theme'
@@ -33,7 +34,7 @@ vim.o.autochdir = true
 
 vim.g.mapleader = ' '
 options = { noremap = true }
-vim.keymap.set('n', '<leader>n', ':Ex<cr>', options)
+vim.keymap.set('n', '<leader>n', ':Oil<cr>', options)
 vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {noremap = true})
 
 -- Enable detailed listing format
@@ -41,9 +42,17 @@ vim.g.netrw_liststyle = 1
 vim.g.netrw_hide = 1                        -- Show hidden files by default
 vim.g.netrw_browse_split = 4                -- hsplit
 
+require("oil").setup({
+	default_file_explorer = true,
+	columns = {
+		"permissions",
+		"size",
+		"mtime",
+	}
+})
 
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = {'javascript', 'typescript', 'c', 'lua', 'rust', 'python', 'bash'},
+    ensure_installed = {'c', 'python', 'bash'},
     highlight = { enable = true}
 }
 
@@ -64,7 +73,9 @@ require("kanagawa").setup({
       Keyword = { fg = "#FF75B5", bold = true, italic = true },     -- bold pink for keywords
       String = { fg = "#00FF87" },                                  -- green for strings
       Statement = { fg = "#FFB86C", bold = true },                  -- bold yellow for statements
-    }
+	  Normal = { bg = "#000000"},
+	  NormalNC = { bg = "#000000"},  
+  }
   end,
 })
 
