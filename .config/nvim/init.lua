@@ -36,6 +36,10 @@ vim.g.mapleader = ' '
 options = { noremap = true }
 vim.keymap.set('n', '<leader>n', ':Oil<cr>', options)
 vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {noremap = true})
+vim.keymap.set('n', '<leader>m', ':make<CR>:cwindow<CR>', {noremap = true})
+
+vim.opt.makeprg = "gcc -Wall -Wpedantic -Wextra -std=gnu99 -g -o %< %"
+vim.opt.errorformat = "%f:%l: %m"
 
 -- Enable detailed listing format
 vim.g.netrw_liststyle = 1
