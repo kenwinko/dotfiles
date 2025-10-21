@@ -3,10 +3,16 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export EDITOR='neovim'
+export TERM=st-256color # needed for c-x c-e
+export EDITOR='nvim'
+export moscow='192.168.250.45'
+export kyoto='192.168.250.42'
+
 set -o vi
 
 PS1='[\u@\h \W]\$ '
-alias ls="ls --color --color=auto"
+
+alias ls="ls --color -F"
 alias ll="ls --color -lrth"
-alias config="/usr/bin/git --git-dir=/home/kulak/.cfg/ --work-tree=/home/kulak"
+
+bind '"\C-x\C-e": edit-and-execute-command'"
