@@ -8,6 +8,7 @@ Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'rebelot/kanagawa.nvim'
+Plug 'webhooked/kanso.nvim'
 
 vim.call('plug#end')
 
@@ -83,4 +84,4 @@ require("kanagawa").setup({
   end,
 })
 
-vim.cmd('colorscheme kanagawa-dragon')
+vim.cmd('colorscheme kanso-zen')
