@@ -1,6 +1,5 @@
 local Plug = vim.fn['plug#']
 
-
 vim.call('plug#begin')
 
 Plug 'stevearc/oil.nvim'
@@ -8,7 +7,11 @@ Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 Plug 'bluz71/vim-moonfly-colors'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'rebelot/kanagawa.nvim'
+Plug 'nyoom-engineering/oxocarbon.nvim'
+Plug 'morhetz/gruvbox'
+Plug 'blazkowolf/gruber-darker.nvim'
 Plug 'webhooked/kanso.nvim'
+Plug 'tommcdo/vim-exchange'
 
 vim.call('plug#end')
 
@@ -38,6 +41,8 @@ options = { noremap = true }
 vim.keymap.set('n', '<leader>n', ':Oil<cr>', options)
 vim.keymap.set('n', '<C-t>', '<cmd>tabnew<cr>', {noremap = true})
 vim.keymap.set('n', '<leader>m', ':make<CR>:cwindow<CR>', {noremap = true})
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 vim.opt.makeprg = "gcc -Wall -Wpedantic -Wextra -std=gnu99 -g -o %< %"
 vim.opt.errorformat = "%f:%l: %m"
@@ -56,32 +61,28 @@ require("oil").setup({
 	}
 })
 
-require 'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter'.setup {
     ensure_installed = {'c', 'python', 'bash'},
     highlight = { enable = true}
 }
 
-
 require("kanagawa").setup({
   compile = false,
-  undercurl = true,
-  commentStyle = { italic = true },
-  functionStyle = { bold = true },
-  keywordStyle = { italic = true, bold = true },
-  statementStyle = { bold = true },
-  typeStyle = { bold = true },
-  terminalColors = true,
+  transparent = false,
+
   overrides = function(colors)
     return {
-      Comment = { fg = colors.palette.oniViolet, italic = true },   -- violet comments
-      Function = { fg = "#80FFFF", bold = true },                   -- bold cyan for functions
-      Keyword = { fg = "#FF75B5", bold = true, italic = true },     -- bold pink for keywords
-      String = { fg = "#00FF87" },                                  -- green for strings
-      Statement = { fg = "#FFB86C", bold = true },                  -- bold yellow for statements
-	  Normal = { bg = "#000000"},
-	  NormalNC = { bg = "#000000"},  
-  }
+      Statement     = { fg = "#FF75B5", bold = true },
+      cRepeat       = { fg = "#FF75B5", bold = true },
+      cConditional  = { fg = "#FF75B5", bold = true },
+
+      Comment  = { fg = colors.palette.oniViolet, italic = true },
+      Function = { fg = "#80FFFF", bold = true },
+      String   = { fg = "#00FF87" },
+      Normal   = { bg = "#000000" },
+      NormalNC = { bg = "#000000" },
+    }
   end,
 })
 
-vim.cmd('colorscheme kanso-zen')
+vim.cmd.colorscheme("kanagawa")
