@@ -15,4 +15,4 @@ PS1='[\u@\h \W]\$ '
 alias ls="ls --color -F"
 alias ll="ls --color -lrth"
 
-bind '"\C-x\C-e": edit-and-execute-command'"
+bind '"\C-x\C-e": edit-and-execute-command'
