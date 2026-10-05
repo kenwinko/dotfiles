@@ -7,16 +7,18 @@ filetype plugin indent on
 
 set number
 set relativenumber
-set cinoptions=l1
+
 set softtabstop=4
-set autoindent
-set fileformat=unix
 set tabstop=4
 set shiftwidth=4
+set shiftround
+set autoindent
 set smarttab
+
+set fileformat=unix
 set encoding=utf-8
 set textwidth=79
-set shiftround
+set cinoptions=l1
 set splitright
 set incsearch
 set autochdir
