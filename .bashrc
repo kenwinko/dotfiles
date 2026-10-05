@@ -4,7 +4,7 @@
 [[ $- != *i* ]] && return
 
 export TERM=st-256color # needed for c-x c-e
-export EDITOR='nvim'
+export EDITOR='vim'
 export moscow='192.168.250.45'
 export kyoto='192.168.250.42'
 
