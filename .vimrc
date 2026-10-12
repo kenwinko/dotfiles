@@ -1,8 +1,3 @@
-call plug#begin()
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-call plug#end()
-
 filetype plugin indent on
 
 set number
@@ -34,13 +29,8 @@ hi Comment ctermfg=63
 let mapleader = " "
 nnoremap <leader>m :make<CR>:cwindow<CR>
 
-
 set makeprg=gcc\ -Wall\ -Wpedantic\ -Wextra\ -std=gnu99\ -g\ -o\ %<\ %
 set errorformat=%f:%l:\ %m
-
-
-let g:airline_powerline_fonts = 0
-let g:airline_theme = "behelit"
 
 highlight RedundantWhitespace ctermbg=green guibg=green
 match RedundantWhitespace /\s\+$\| \+\ze\t/
