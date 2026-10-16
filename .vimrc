@@ -19,6 +19,7 @@ set incsearch
 set autochdir
 set showmatch
 set showcmd
+set hlsearch
 set clipboard=unnamedplus
 
 set termguicolors
