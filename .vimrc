@@ -22,6 +22,7 @@ set showcmd
 set hlsearch
 set clipboard=unnamedplus
 
+syntax on
 set termguicolors
 set background=dark
 hi Search ctermbg=LightYellow
